@@ -1,4 +1,4 @@
-FROM jenkinsci/jenkins:2.60.1
+FROM jenkinsci/jenkins:2.69
 
 MAINTAINER Nick Griffin, <nicholas.griffin>
 
@@ -37,10 +37,10 @@ ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additiona
 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 
-RUN mkdir -p $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH && chown -R jenkins:jenkins $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH
-RUN mkdir -p ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders && chown -R jenkins:jenkins ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders
-RUN chown -R jenkins:jenkins /usr/share/jenkins/ && chown jenkins:jenkins /entrypoint.sh
-RUN chown -R jenkins:jenkins /var/jenkins_home
+RUN mkdir -p $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH && chown -R jenkins:0 $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH
+RUN mkdir -p ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders && chown -R jenkins:0 ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders
+RUN chown -R jenkins:0 /usr/share/jenkins/ && chown jenkins:0 /entrypoint.sh
+RUN chown -R jenkins:0 /var/jenkins_home
 
 # Become jenkins for openshift
 USER jenkins
