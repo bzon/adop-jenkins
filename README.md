@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Supported tags and respective `Dockerfile` links
 
 - [`0.2.0`, `0.2.0` (*0.2.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/blob/0.2.0/Dockerfile)
@@ -19,6 +20,7 @@ Runtime configuration can be provided using environment variables:
 
 * JENKINS_OPTS, Jenkins startup options.
 * ADOP_LDAP_ENABLED, allow enable/disable LDAP authentication. Default to true (enabled).
+* ADOP_ACL_ENABLED, allow enable/disable Jenkins user access control lists.
 * ADOP_SONAR_ENABLED, allow enable/disable Jenkins-Sonar integrations. Default to true (enabled).
 * ADOP_ANT_ENABLED, allow enable/disable Jenkins-ANT integration. Default to true (enabled).
 * ADOP_MAVEN_ENABLED, allow enable/disable Jenkins-MAVEN integration. Default to true (enabled).
@@ -69,6 +71,7 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_HOST, Docker CLI variable to declare the endpoint to target
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
+* GROOVY_VERSION, a comma delimited list of Groovy installation profiles to install (e.g. 2.4.8, 2.4.3).
 
 ## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
@@ -114,3 +117,6 @@ If you have any problems with or questions about this image, please contact us t
 You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
 
 Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/Accenture/adop-jenkins/issues), especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.
+=======
+# jenkins-v2.70
+>>>>>>> 3c569b588f6b10a8058818a2897f9ebe8137456f
