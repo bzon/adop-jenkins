@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< cc78f7a256d97a547c460a0b795eb378ed8f6c66
 greenballs:1.15
 docker-build-step:1.35
@@ -129,6 +130,8 @@ dependency-check-jenkins-plugin:1.4.3
 uno-choice:1.5.2
 copy-to-slave:1.4.4
 =======
+=======
+>>>>>>> fde205e2ed4a672646fa7c381eed7aa037431faf
 greenballs:latest
 docker-build-step:latest
 copyartifact:latest
@@ -292,4 +295,7 @@ blueocean-pipeline-editor:0.2.0
 blueocean-web:1.1.4
 blueocean-personalization:1.1.4
 
+<<<<<<< HEAD
 >>>>>>> updated files for openshift
+=======
+>>>>>>> fde205e2ed4a672646fa7c381eed7aa037431faf
