@@ -160,3 +160,4 @@ blueocean-github-pipeline:1.1.4
 blueocean-pipeline-editor:0.2.0
 blueocean-web:1.1.4
 blueocean-personalization:1.1.4
+prometheus:1.0.6
