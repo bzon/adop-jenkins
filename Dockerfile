@@ -25,15 +25,7 @@ RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
 # USER jenkins
 
 # Environment variables
-<<<<<<< HEAD
-<<<<<<< cc78f7a256d97a547c460a0b795eb378ed8f6c66
-ENV ADOP_LDAP_ENABLED=true ADOP_ACL_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=true
-=======
 ENV ADOP_LDAP_ENABLED=true ADOP_ACL_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=false
->>>>>>> updated files for openshift
-=======
-ENV ADOP_LDAP_ENABLED=true ADOP_ACL_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=false
->>>>>>> fde205e2ed4a672646fa7c381eed7aa037431faf
 ENV LDAP_GROUP_NAME_ADMIN=""
 ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
 ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
