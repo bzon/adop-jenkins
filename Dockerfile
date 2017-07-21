@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkinsci/jenkins:2.69
 
 MAINTAINER Nick Griffin, <nicholas.griffin>
 
@@ -25,12 +25,20 @@ RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
 # USER jenkins
 
 # Environment variables
-ENV ADOP_LDAP_ENABLED=true ADOP_ACL_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=true
+ENV ADOP_LDAP_ENABLED=true ADOP_ACL_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=false
 ENV LDAP_GROUP_NAME_ADMIN=""
 ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
 ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
 ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additional_classpath/"
 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+RUN mkdir -p $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH && chown -R jenkins:0 $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH
+RUN mkdir -p ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders && chown -R jenkins:0 ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders
+RUN chown -R jenkins:0 /usr/share/jenkins/ && chown jenkins:0 /entrypoint.sh
+RUN chown -R jenkins:0 /var/jenkins_home
+
+# Become jenkins for openshift
+USER jenkins
 
 ENTRYPOINT ["/entrypoint.sh"]
