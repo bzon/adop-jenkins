@@ -9,21 +9,25 @@
 #password=$GERRIT_JENKINS_PASSWORD
 #nohup /usr/share/jenkins/ref/adop\_scripts/generate_key.sh -c ${host} -p ${port} -u ${username} -w ${password} &
 
+# Export Openshift Secrets
+if [[ -n "$SECRETS_DIR" && -d "$SECRETS_DIR" ]]
+  then
+  # SECRETS_DIR contains secret files, each file has KEY=VALUE content
+  eval $(cat $SECRETS_DIR/*)
+fi
+
 echo "Setting up your default SCM provider - Gerrit..."
-whoami
 #mkdir -p $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH
 #mkdir -p ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders
 nohup /usr/share/jenkins/ref/adop\_scripts/generate_gerrit_scm.sh -i ${gerrit_provider_id} -p ${gerrit_protocol} -h ${host} &
 
 echo "Tokenising scriptler scripts..."
-whoami
 sed -i "s,###SCM_PROVIDER_PROPERTIES_PATH###,$PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH,g" /usr/share/jenkins/ref/scriptler/scripts/retrieve_scm_props.groovy
 
 echo "skip upgrade wizard step after installation"
 echo "2.7.4" > /var/jenkins_home/jenkins.install.UpgradeWizard.state
 
 echo "start JENKINS"
-whoami
 
 #chown -R 1000:1000 /var/jenkins_home
 /usr/local/bin/jenkins.sh
